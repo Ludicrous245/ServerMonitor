@@ -1,0 +1,7 @@
+name: ServerMonitor
+version: ${project.version}
+main: com.ludicrous245.ServerMonitor
+api-version: 1.17
+commands:
+  sm:
+  servermonitor:
