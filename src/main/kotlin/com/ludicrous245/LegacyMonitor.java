@@ -9,17 +9,14 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitRunnable;
-
-import javax.xml.soap.Text;
 import java.lang.management.ManagementFactory;
 import com.sun.management.OperatingSystemMXBean;
 import java.lang.management.RuntimeMXBean;
-import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-public class MonitorManager {
+public class LegacyMonitor {
 
     public Inventory inventory;
 
@@ -33,7 +30,7 @@ public class MonitorManager {
 
     int mb = 1024*1024;
 
-    public MonitorManager(JavaPlugin plugin, Player player){
+    public LegacyMonitor(JavaPlugin plugin, Player player){
         instance = plugin;
         user = player;
         runtime = Runtime.getRuntime();
@@ -52,7 +49,7 @@ public class MonitorManager {
     }
 
     private void reloadPlayer(){
-         interval = new BukkitRunnable() {
+        interval = new BukkitRunnable() {
             @Override
             public void run() {
 
@@ -112,13 +109,13 @@ public class MonitorManager {
             }
         };
 
-         try {
-             interval.runTaskTimer(instance, 0, 20);
-         }catch (Exception e){
-             System.out.println("[ServerMonitor] 예기치 않은 오류가 발생했습니다!");
-             breakPlayer();
-             user.closeInventory();
-         }
+        try {
+            interval.runTaskTimer(instance, 0, 20);
+        }catch (Exception e){
+            System.out.println("[ServerMonitor] 예기치 않은 오류가 발생했습니다!");
+            breakPlayer();
+            user.closeInventory();
+        }
         System.out.println("[ServerMonitor] 실시간 정보 갱신을 시작합니다. (갱신 주기: 1초)");
     }
 
